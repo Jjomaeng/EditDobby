@@ -1,0 +1,76 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/main.css' %}">
+<link rel="stylesheet" href="{% static 'css/result.css' %}">
+<link rel="stylesheet" href="{% static 'css/topnavi.css' %}">
+ 
+ 
+<body>
+<div class='maindobby'>
+    <div class="nv">
+        <div class="navleft">
+            <h1>
+                <a href="{%url 'main:main' %}"><img src="/static/assets/final_logo.png"style="width:100px; height:100px;"></a>
+            </h1>
+        </div>
+        <div class="gnb">
+                <a href="{%url 'main:main' %}" data-link="Home"></a>
+                <a href="{%url 'dobby:edit' %}" data-link="영상편집"></a>
+                <a href="{%url 'board:postlist' %}" data-link="커뮤니티"></a>
+        </div>
+    </div>
+</div>
+ 
+ 
+ 
+<div class="content">
+    {%if file %}
+    {% comment %} <h3>"{{ file.file_root }}"</h3> {% endcomment %}
+    <video class="video" controls poster="//bit.ly/3688dKw">
+        <source src="{{ file.file_root }}" type="video/mp4">
+        <strong>이 문장은 사용자의 웹 브라우저가 video 태그를 지원하지 않을 때 나타납니다!</strong>
+    </video>
+    {%else%}
+    {% comment %} <h3>sd</h3> {% endcomment %}
+    <video class="video" controls poster="//bit.ly/3688dKw">
+        <source src="\media\subtitle\media.mp4" type="video/mp4">
+        <strong>이 문장은 사용자의 웹 브라우저가 video 태그를 지원하지 않을 때 나타납니다!</strong>
+    </video>
+    {%endif%}
+</div>
+<div class="container" style="color:black;" >
+    <div>
+        <strong>혹시 마음에 안드시나요?<br>그러면 요청주세요. 빠르게 개선해보겠습니다.</strong>
+    </div>
+</div>
+
+<div class="down_btn" >
+    <form action="{% url 'dobby:dobbydown' %}" name="download" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="filename" value="{{file.file_root}}">
+        <a><button type="submit"><img src="/static/assets/download.png"></button></a>
+    </form>
+</div>
+ 
+ 
+ 
+<div class="foot">
+    <div class="footleft">
+        <h1>
+            <strong>DOBBYEDIT</strong>
+        </h1>
+    </div>
+    <div class="footright">
+        <div class='copyright'>
+            <h4>
+                <strong>Contact webmaster for more information. 010-지기지기-기용기용</strong>
+            </h4>
+        </div>
+        <button class="footbtn1" onclick="location.href='{%url 'main:main' %}'">
+        </button>
+        <button class="footbtn2" onclick="location.href='{%url 'main:main' %}'">
+        </button>
+    </div>
+</div>
+ 
+</body>

@@ -1,0 +1,167 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit</title>
+    <link rel="stylesheet" href="{% static 'css/edit.css' %}">
+    <link rel="stylesheet" href="{% static 'css/topnavi.css' %}">
+
+    <style>
+        #modal.modal-overlay {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            backdrop-filter: blur(1.5px);
+            -webkit-backdrop-filter: blur(1.5px);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+        #modal .modal-window {
+            background: rgba( 69, 139, 197, 0.70 );
+            box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+            backdrop-filter: blur( 13.5px );
+            -webkit-backdrop-filter: blur( 13.5px );
+            border-radius: 10px;
+            border: 1px solid rgba( 255, 255, 255, 0.18 );
+            width: 1400px;
+            height: 500px;
+            position: relative;
+            top: -100px;
+            padding: 10px;
+        }
+        #modal .title {
+            padding-left: 10px;
+            display: inline;
+            text-shadow: 1px 1px 2px gray;
+            color: white;
+            
+        }
+        #modal .title h2 {
+            display: inline;
+        }
+        #modal .close-area {
+            display: inline;
+            float: right;
+            padding-right: 10px;
+            cursor: pointer;
+            text-shadow: 1px 1px 2px gray;
+            color: white;
+        }
+        
+        #modal .content {
+            margin-top: 20px;
+            padding: 0px 10px;
+            text-shadow: 1px 1px 2px gray;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class='maindobby'>
+        <div class="nv">
+            <div class="navleft">
+                <h1>
+                    <a href="{%url 'main:main' %}"><img src="/static/assets/final_logo.png"style="width:100px; height:100px;"></a>
+                </h1>
+            </div>
+            <div class="gnb">
+                    <a href="{%url 'main:main' %}" data-link="Home"></a>
+                    <a href="{%url 'dobby:edit' %}" data-link="영상편집"></a>
+                    <a href="{%url 'board:postlist' %}" data-link="커뮤니티"></a>
+            </div>
+        </div>
+        <div class="title">
+            <h1>
+                영상을 편집해서 도비를 해방시켜주세요!
+            </h1>
+        </div>
+    </div>
+
+
+    <div class="content">
+        <div class="upload-button">
+            <div class="row2">   
+                {% comment %} if문: 동영상없으면 input form {% endcomment %}
+                <div class="filebox">
+                    <label for="input-file">
+                        <strong>동영상을 넣어주세요</strong>
+                    </label> 
+                    <form id="send" action="{% url 'dobby:edit' %}" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <input type="file" id="input-file" name="e_file" style="display:none;">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class='fun'>
+        <input type="submit" id="submit" form="send" value="편집시작!">
+    </div>
+    <div class="foot">
+        <div class="footleft">
+            <h1>
+                <strong>DOBBYEDIT</strong>
+            </h1>
+        </div>
+        <div class="footright">
+            <div class='copyright'>
+                <h4>
+                    <strong>Contact webmaster for more information. 010-지기지기-기용기용</strong>
+                </h4>
+            </div>
+            <button class="footbtn1" onclick="location.href='{%url 'main:main' %}'">
+            </button>
+            <button class="footbtn2" onclick="location.href='{%url 'main:main' %}'">
+            </button>
+        </div>
+    </div>  
+</body>
+<script>
+    /*const loremIpsum = document.getElementById("lorem-ipsum")
+    fetch("https://baconipsum.com/api/?type=all-meat&paras=200&format=html")
+        .then(response => response.text())
+        .then(result => loremIpsum.innerHTML = result)*/
+    const modal = document.getElementById("modal")
+    function modalOn() {
+        modal.style.display = "flex"
+    }
+    function isModalOn() {
+        return modal.style.display === "flex"
+    }
+    function modalOff() {
+        modal.style.display = "none"
+    }
+    const btnModal = document.getElementById("btn-modal")
+    btnModal.addEventListener("click", e => {
+        modalOn()
+    })
+    const closeBtn = modal.querySelector(".close-area")
+    closeBtn.addEventListener("click", e => {
+        modalOff()
+    })
+    modal.addEventListener("click", e => {
+        const evTarget = e.target
+        if(evTarget.classList.contains("modal-overlay")) {
+            modalOff()
+        }
+    })
+    window.addEventListener("keyup", e => {
+        if(isModalOn() && e.key === "Escape") {
+            modalOff()
+        }
+    })
+</script>
+</html>

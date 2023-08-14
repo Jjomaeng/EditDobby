@@ -1,0 +1,96 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <title>Login</title>
+    <link href="{% static 'css/login.css' %}" rel="stylesheet">
+</head>
+
+<script>
+    function submit_chk(){
+        var member_id = document.getElementsByName("member_id")[0].value;
+        var member_password = document.getElementsByName("member_password")[0].value;
+        
+        if(member_id=='' && member_password!=''){
+            alert("아이디를 입력하세요.");
+            return false;
+        } else if(member_id!='' && member_password==''){
+            alert("비밀번호를 입력하세요.");
+            return false;
+        } else if(member_id=='' && member_password==''){
+            alert("로그인 정보를 입력하세요.");
+            return false;
+        } else {
+            return true; //pass
+        }
+    }
+
+</script>
+
+<body>
+    <header>
+    </header>
+    <div class="logo">
+        <img src='/static/assets/logindobby.png' style="width: 350px; height:350px;">
+    </div>
+    <div class="form-login">
+        <form method="post" action="." onsubmit="submit_chk();">
+        {% csrf_token %}
+        <div class="login-title">
+        <h1>DOBBY EDIT</h1>
+        </div>
+
+        <input type="text" id="floatingInput" placeholder="Username" name="member_id" value={{member_id}}>
+
+        <div class="password">
+            <div style="float:left;width:40%">
+            </div>
+            <div style="float:right;width:60% text-right">
+            <a href="#">비밀번호 찾기</a>
+            </div>
+        </div>
+        <input type="password" id="floatingPassword" placeholder="Password" name="member_password" vale={{member_pasusword}}>
+        {% if messages %}
+            <div>
+                {% for message in messages %}
+                <span style = "color:red">{{ message.tags }}! {{ message.message }}</span>
+                {% endfor %}
+            </div>
+        {% endif %}
+        <div class="checkbox mb-3">
+            <label>
+            <!--체크박스 배경색 변경 필요-->
+            <input type="checkbox" value="remember-me"> 자동 로그인
+            </label>
+        </div>
+        <button class="submit-btn" type="submit" value="서버로 제출하기">로그인</button>
+        
+        <div class="bottomText">
+            회원이 아니신가요? <a href="{% url 'main:signup' %}">회원가입하기</a>
+        </div>
+        </form>
+    </div>
+    <div class="foot">
+        <div class="footleft">
+            <h1>
+                <strong>DOBBYEDIT</strong>
+            </h1>
+        </div>
+        <div class="footright">
+            <div class='copyright'>
+                <h4>
+                    <strong>Contact webmaster for more information. 010-지기지기-기용기용</strong>
+                </h4>
+            </div>
+            <button class="footbtn1" onclick="location.href='{%url 'main:main' %}'">
+            </button>
+            <button class="footbtn2" onclick="location.href='{%url 'main:main' %}'">
+            </button>
+        </div>
+    </div>  
+</body>
+
+</html>

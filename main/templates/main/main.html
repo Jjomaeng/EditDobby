@@ -1,0 +1,277 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+    <!-- Google Icon -->
+    <link
+        href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
+        rel="stylesheet">
+    <meta charset="UTF-8">
+    <!--<meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main</title>
+    <link href = "https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel = "stylesheet">
+    <link rel = "stylesheet" href = "/static/css/main.css">
+    <link rel="stylesheet" href="/static/css/default.css">
+    <link rel="stylesheet" href="/static/css/firstscene.css">
+    <link rel="stylesheet" href="/static/css/navi.css">
+    <script src="/static/js/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TimelineMax.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/plugins/CSSPlugin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/easing/EasePack.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.14.2/TweenMax.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenLite.min.js"></script>
+
+</head>
+<body class="before-load">
+	<div class="loading">
+		<svg class="loading-circle">
+			<circle cx="50%" cy="50%" r="25"></circle>
+		</svg>
+	</div>
+	<div class="container">
+		<section class="scroll-section" id="scroll-section-0">
+			<h1>EditDobby</h1>
+			<object class="sticky-elem logo" data="/static/assets/logo.svg" type="image/svg+xml"></object>
+			<div class="sticky-elem main-message a">
+				<p>편집의</p>
+			</div>
+			<span class="sticky-elem ribbon-path">
+				<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 450">
+					<path class="st1" d="M709,41.5c-194,38-387,122-455,159c-64.13,34.89-73.4,42.42,20,26c82.5-14.5,126.34-33.68,185-38 c47.5-3.5,69.22,7.98-11,39c-75,29-251,98-459,169"></path>
+				</svg>
+			</span>
+			<div class="sticky-elem main-message b">
+				<p>혁신</p>
+			</div>
+		</section>
+		<div class="normal-content" style = "text-align: center">
+			<section>
+				<p class="mid-message">
+					EditDobby를 소개합니다
+				</p>
+			</section>
+		</div>
+	</div>
+
+	<script src = "/static/js/firstscene.js"></script>
+</body>
+    <section class = "scroll-content">
+        <div class = "scroll-graphic">
+            <div class = "graphic-item"><img class ="scene-img" src = "/static/assets/coffee.png" alt = ""></div>
+            <div class = "graphic-item"><img class ="scene-img" src = "/static/assets/train.png" alt = ""></div>
+            <div class = "graphic-item"><img class = "scene-img" src = "/static/assets/city.png" alt=""></div>
+            <div class = "graphic-item" data-action="birdFly">
+                <img class = "bird" src = "/static/assets/bird.gif" alt = "">
+                <img class = "scene-img" src = "/static/assets/city.png" alt = "">
+            </div>
+            <div class = "graphic-item"><img class = "scene-img" src = "/static/assets/computer.png" alt = ""></div>
+            <div class = "graphic-item"><img class = "scene-img" src = "/static/assets/eat.png" alt=""></div>
+            <div class = "graphic-item" data-action = "birdFly2">
+                <img class = "bird" src = "/static/assets/bird.gif" alt ="">
+                <img class = "scene-img" src = "/static/assets/eat.png" alt = "">
+            </div>
+            <div class = "graphic-item"><img class = "scene-img" src = "/static/assets/computer.png" alt = ""></div>
+            <div class = "graphic-item"><img class = "scene-img" src = "/static/assets/think.png" alt = ""></div>
+            <div class = "graphic-item"><img class = "scene-img" src = "/static/assets/dobby.gif" alt = ""></div>
+        </div>
+    <!-- <div class="wrap">
+        <div class="menuOpen">
+            <button class="open"><img src="/static/assets/open-icon.png" width = 100; alt="메뉴열기"></button>
+            <div class="menuWrap">
+                <a href="#" class="close"><img src="/static/assets/close.png" alt=""></a>
+                <a href="#" class="close en">close</a>
+                <ul class="tit en animate" data-animate="motion">
+                    <li><a href="{%url 'dobby:edit' %}"><span><b>영상편집</b></span></a></li>
+                    <li><a href="{%url 'board:postlist' %}"><span><b>게시판</b></span></a></li>
+                    <li><a href="{%url 'main:my' %}"><span><b>My</b></span></a></li>
+                    <li><a href="{%url 'dobby:fun' %}"><span><b>function</b></span></a></li>
+                </ul>
+            </div>
+        </div>
+    </div> -->
+
+    <nav class="nav">
+
+        <ul class="nav__list">
+          <li class="nav__item">
+            <a class="nav__link">
+              <div class="nav__link-content">
+                <span class="nav__link-num">01</span>
+                <div class="nav__link-title" onclick="location.href='{%url 'dobby:edit' %}'">영상편집</div>
+                <div class="nav__link-desc">Edit</div>
+              </div>
+              <div class="nav__link-base"></div>
+            </a>
+            <div class="nav__item-line"></div>
+          </li>
+
+          <li class="nav__item">
+            <a class="nav__link">
+              <div class="nav__link-content">
+                <span class="nav__link-num">02</span>
+                <div class="nav__link-title" onclick="location.href='{%url 'board:postlist' %}'">커뮤<br>니티</div>
+                <div class="nav__link-desc">Board</div>
+              </div>
+              <div class="nav__link-base"></div>
+            </a>
+            <div class="nav__item-line"></div>
+          </li>
+
+          {% if request.session.s_id %}
+          <li class="nav__item">
+            <a class="nav__link">
+              <div class="nav__link-content">
+                <span class="nav__link-num">03</span>
+                <div class="nav__link-title" onclick="location.href='{%url 'main:logout' %}'">log<br>out</div>
+                <div class="nav__link-desc">Log out</div>
+              </div>
+              <div class="nav__link-base"></div>
+            </a>
+            <div class="nav__item-line"></div>
+          </li>
+          {% else %}
+          <li class="nav__item">
+            <a class="nav__link">
+              <div class="nav__link-content">
+                <span class="nav__link-num">03</span>
+                <div class="nav__link-title" onclick="location.href='{%url 'main:login' %}'">log<br>in</div>
+                <div class="nav__link-desc">Log in</div>
+              </div>
+              <div class="nav__link-base"></div>
+            </a>
+            <div class="nav__item-line"></div>
+          </li>
+          {% endif %}
+
+        </ul>
+      
+
+      </nav>
+      <svg class="nav__bg" width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+              <linearGradient class="nav__grad" x1="92.6356902%" y1="7.36430977%" x2="0%" y2="100%" id="nav-grad">
+                  <stop stop-color="#E0D8B0" offset="20%"></stop>
+                  <stop stop-color="#CE9461" offset="100%"></stop>
+              </linearGradient>
+          <mask id="nav__bg-mask" class="nav__bg-mask" maskUnits="userSpaceOnUse"x="0" y="0" width="100" height="100">
+              <rect class="nav__bg-mask-rect" x="0" y="0" width="25" height="100" fill="white"/>
+            <rect class="nav__bg-mask-rect" x="24.9" y="0" width="25.1" height="100" fill="white"/>
+            <rect class="nav__bg-mask-rect" x="49.9" y="0" width="25.1" height="100" fill="white"/>
+            <rect class="nav__bg-mask-rect" x="74.9" y="0" width="25.1" height="100" fill="white"/>
+          </mask>
+          </defs>
+          <rect x="0" y="0" width="100" height="100" fill="url(#nav-grad)" mask="url(#nav__bg-mask)"></rect>
+      </svg>
+      
+      <button class="nav-btn">
+        <svg class="burger <?php echo $darkBurgerClass; ?>" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36">
+      <!--        <title>Navigation Button Icon</title> -->
+              <rect class="burger__stroke"  x="2" y="2" width="32" height="32" fill="none" stroke="" stroke-miterlimit="10" stroke-width="4"/>
+              <polyline class="burger__stroke-over" fill="none" stroke="" stroke-miterlimit="10" stroke-width="4"/>
+              <g class="burger__plus">
+                <rect class="burger__plus-left" x="8" y="16" width="10" height="4"/>
+                <rect class="burger__plus-btm" x="16" y="18" width="4" height="10"/>
+                <rect class="burger__plus-right" x="18" y="16" width="10" height="4"/>
+                <rect class="burger__plus-top" x="16" y="8" width="4" height="10"/>
+              </g>
+            </svg>
+      </button>
+        <!-- scroll-text global-width는 스크롤 될때 말풍선이 담기는 곳 -->
+        <div class = "scroll-text global-width">
+            <div class = "step">
+                <p>
+                    오늘도 하루가 시작된다
+                    아침에 일어나면<br> 커피를 내리며 정신을 차린다
+                </p>
+            </div>
+            <div class = "step">
+                <p>
+                    지하철을 타며 또 다시 직장으로 나가는 <br>일상이 반복된다
+                    
+                </p>
+            </div>
+            <div class = "step">
+                <p>
+                    직장을 다니는 것도 좋지만 유튜버를 하며<br>취미까지 같이 즐기고싶은데...<br>
+                    방법이 없으려나...?
+                </p>
+            </div>
+            <div class = "step">
+                <p>
+                    근데 지금도 바쁜데 촬영하고 편집까지 <br>할 수 있을까?
+                </p>
+            </div>
+            <div class = "step">
+                <p>
+                    출근 후 오늘의 업무를 시작한다
+                </p>
+            </div>
+            <div class = "step">
+                <p>
+                    어느덧 점심시간<br>
+                    밥을 먹으면서도 유튜버를 해볼까 하는 <br>생각이 머리 속에서 계속 맴돈다
+                </p>
+            </div>
+            <div class = "step">
+                <p>
+                    브이로그를 만들거나 재밌는 영상을 찍으면<br>
+                    취미도 즐기고 돈도 벌고 좋을거같은데...
+                </p>
+            </div>
+            <div class = "step">
+                <p>
+                    근데 시간도 부족한데 촬영하고 편집까지 <br>언제 다하지
+                    그리고 막상 어떻게 시작할지도 모르겠어...
+                </p>
+            </div>
+            <div class = "step">
+                <p>
+                    아직도 영상편집을 어떻게할지 몰라서 <br>막연하게 유튜브해볼까 생각중인가요?<br>
+                    걱정마세요
+                </p>
+            </div>
+            <div class = "step">
+                <p>
+                    EditDobby가 도와줄게요
+                </p>
+            </div>
+        </div>
+    </section>
+    <!-- normal-content global-width는 스크롤 효과가 끝나고 밑에 나오는 텍스트 -->
+    <section class = "normal-content global-width">
+        <h2>재능을 낭비하지 말아요</h2>
+        <p>여러분의 재능을 마음껏 펼치세요<br> 크리에이터로 발돋움을 도와드릴게요</p><br>
+        <h2>도비가 도와줄게요!</h2>
+        <p>막상 하려니 촬영부터 편집까지 막막하시나요? <br>도비가 편집을 도와드릴게요<br>여러분은 촬영만 재밌게 하시면 된다구요</p><br>
+        <h2>내일은 더 나은 모습으로</h2>
+        <p>하루하루 자신의 재능을 펼치면 더 나은 내일이 <br>오지않을까요?</p>
+    </section>
+        <div class="foot">
+            <div class="footleft">
+                <h4>
+                    DOBBYEDIT
+                </h4>
+            </div>
+            <div class="footright">
+                <div class='copyright'>
+                    <h4>
+                        Contact webmaster for more information. <br>
+                        010-지기지기-기용기용
+                    </h4>
+                </div>
+                <button class="footbtn1" onclick="window.open('https://github.com/AIVLE-School-first-Big-Project/EditDobby.git')">
+                </button>
+                <button class="footbtn2" onclick="window.open('https://github.com/AIVLE-School-first-Big-Project/EditDobby.git')">
+                </button>
+            </div>
+        </div>  
+    <script src = "/static/js/main.js"></script>
+    <script src="/static/js/navi.js"></script>
+</body>
+</html>

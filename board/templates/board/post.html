@@ -1,0 +1,204 @@
+{% load static %}
+{% comment %} <link rel="stylesheet" href="{% static 'css/topnavi.css' %}"> {% endcomment %}
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/post.css' %}">
+    <link rel="stylesheet" href="{% static 'css/topnavi.css' %}">
+    {% comment %} <script src="/static/javascript/post.js"></script> {% endcomment %}
+    <script
+        src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?autoload=true&skin=sunburst&lang=css">
+    </script>
+</head>
+
+<body>
+        {% comment %} {% if request.session.member_name %}
+        <div class="navright" style="float:right;width:33%">
+            <div style="float:left;width:80%">
+                <a class=navright>{{ request.session.member_name }} 님 반갑습니다.</a>
+            </div>
+            <div style="float:right;width:20%">
+                <a class=navright href="{%url 'member:logout' %}">로그아웃</a>
+            </div>
+        </div>
+        {% else %}
+        <div class="navright" style="float:right;width:33%">
+            <div style="float:left;width:80%">
+                <a class=navright href="{%url 'member:login' %}">로그인</a>
+            </div>
+            <div style="float:right;width:20%">
+                <a class=navright href="{%url 'member:signup' %}">회원가입</a>
+            </div>
+        </div>
+        {% endif %} {% endcomment %}
+    <div class="nv">
+        <div class="navleft">
+            <h1>
+                <a href="{%url 'main:main' %}">DOBBYEDIT</a>
+            </h1>
+        </div>
+        {% comment %} <div class="navcenter"></div> {% endcomment %}
+        <div class="navright">
+            <div class="gnb">
+                <a href="{%url 'main:main' %}" data-link="Home"></a>
+                <a href="{%url 'dobby:edit' %}" data-link="영상편집"></a>
+                <a href="{%url 'board:postlist' %}" data-link="커뮤니티"></a>
+        </div>
+        </div>
+    </div>    
+    <div class="container">
+        <div class="comback">
+        </div>
+        <div class="post-group">
+            <div class="post-info">
+                <div class="user-icon-div">
+                    <img class="user-icon" src="/static/assets/harryicon.png" alt="user icon">
+                    <strong>{{ post.post_title }}</strong>
+                </div>
+                <div class="post-btn">
+                    {% if request.session.s_id == post.member_id.member_id %}
+                    <button class="adj-btn" onclick="location.href='{%url 'board:post_update' post.post_no %}'">수정</button>
+                    <button class="del-btn" onclick="location.href='{%url 'board:post_delete' post.post_no %}'">삭제</button>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="post">
+                {% if postfile %}
+                {% comment %} <form action="{% url 'board:post_file_download' post.post_no %}" method="post"> {% endcomment %}
+                    <i>{{postfile.postfile_name}}</i>
+                    
+                    
+
+
+
+                    {% csrf_token %}
+                    <button type="submit" name="filename" value="{{ postfile.postfile_name }}">
+                        다운로드
+                    </button>
+                </form>
+
+                <br>
+                <br>
+                {{post.post_detail}}
+                {% else %}
+                <img src='/static/assets/post.jpg' style="width: 700px; min-width: 140px;">
+                <br>
+                <br>
+                {{post.post_detail}}
+                {% endif %}
+            </div>
+            <ul class="comments">
+                {% comment %} {% for item in comment%}
+                <li class="comment-item">
+                    <div class="comment-head" id="{{item.comment_no}}">
+                        <img class="user-icon" src="{% static 'assets/harryicon.jpg'%}" alt="user icon">
+                    </div>
+
+                    <div class="comment-body">
+                        <p class="comment-text">{{item.comment_detail}}</p>
+                        <h6>{{item.member_nick}}</h6>
+                    </div>
+                </li>
+                {% endfor %} {% endcomment %}
+                {% for com in comments%}
+                <li class="comment-item">
+                    <div class="comment-head" id="{{com.member_id.member_nick}}">
+                        <img class="user-icon" src="/static/assets/harryicon.png" alt="user icon">
+                    </div>
+
+                    <div class="comment-body">
+                        <h6>{{com.member_id.member_nick}}</h6>
+                        <p class="comment-text">{{com.comment_detail}}</p>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+            <ul>
+                <li class="commemt-line">
+                    <div class="comment-form">
+                        <input type="text" class="comment-write" placeholder="댓글을 입력하세요">
+
+                        <input type="submit" class="register-btn" value="등록">
+                    </div>
+                </li>
+            </ul>
+        </div>
+        
+    </div>
+    <div class="foot">
+        <div class="footleft">
+            <h1>
+                <strong>DOBBYEDIT</strong>
+            </h1>
+        </div>
+        <div class="footright">
+            <div class='copyright'>
+                <h4>
+                    <strong>Contact webmaster for more information. 010-지기지기-기용기용</strong>
+                </h4>
+            </div>
+            <button class="footbtn1" onclick="location.href='{%url 'main:main' %}'">
+            </button>
+            <button class="footbtn2" onclick="location.href='{%url 'main:main' %}'">
+            </button>
+        </div>
+    </div>
+</body>
+<script src="/static/javascript/post.js"></script>
+
+<script>
+    let btnUpdate = document.querySelector('.btnUpdate');
+    let btnReply = document.querySelector('.register-btn');
+
+    [...document.querySelectorAll('.register-btn')].forEach(function (item) {
+        item.addEventListener('click', e => {
+            let content = document.querySelector('.comment-write').value;
+            //let id_check = $('.comment-head').attr('id');
+            //console.log(id_check);
+            console.log(content);
+            document.querySelector('.comment-write').value = '';
+            let param = {
+                //"post_no": id_check,
+                "comment_detail": content,
+            }
+            $.ajax({
+                url: '{% url 'board:comment_write' post.post_no %}',
+                type: 'POST',
+                headers: {
+                    'X-CSRFTOKEN': '{{ csrf_token }}'
+                },
+                data: JSON.stringify(param),
+
+                //통신 받기
+                success: function (receive) {
+                    console.log(receive);
+                    let replyTable = document.querySelector('.comments');
+                    let newTr = document.createElement('li');
+                    newTr.className = 'comment-item';
+                    let str = `
+                    <div class="comment-head">
+                    <img class="user-icon" src="{% static 'assets/harryicon.png'%}" alt="user icon">
+                    </div>
+                    <div class="comment-body">
+                        <h6>${receive.pp}</h6>
+                        <p class="comment-text">${content}</p>
+                    </div>`;
+                    newTr.innerHTML = str;
+                    replyTable.append(newTr);
+                },
+                error: function (request, status, error) {
+                    alert("code" + request.status + '\n' + "messsage:" + request.responseText + "\n" + "error:" + error);
+                }
+            })
+        });
+    });
+
+</script>
+
+</html>

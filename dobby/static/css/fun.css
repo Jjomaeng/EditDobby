@@ -1,0 +1,210 @@
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+body{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.maindobby{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 700px;
+    background-image: url("/static/assets/gohome.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+.nv {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5%;
+    top: 0;
+    width: 100%;
+    height: 50px;
+    z-index: 1;
+}
+
+.navleft{
+    display: flex;
+    justify-content: left;
+}
+
+.navright{
+    display: flex;
+    justify-content: right;
+}
+
+.nav_item{
+    font-size: 20px;
+}
+
+.divider{
+    border-right: 2px solid white;
+    height: auto;
+}
+
+.nv a{
+    text-decoration: none;
+    color: white;
+}
+
+.title {
+    font-size: large;
+    text-decoration: none;
+    color: white;
+
+}
+
+/* 본문 버튼 CSS */
+
+.content{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    top: 50px;
+    width: 100%;
+    height: 100%;
+}
+
+.fun-button{
+    width: 1400px;
+    min-width: 1000px;
+    min-height: 700px;
+    height: 800px;
+}
+
+.row1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    width: 90%;
+    min-height: 300px;
+}
+
+.row2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    width: 90%;
+    min-height: 300px;
+}
+
+.bt1, .bt2, .bt3, .bt4, .bt5, .btn-modal{
+    /*border-style: dotted;*/
+    height: 5vh;
+    border-radius: 20px;
+    background: yellowgreen;
+    color: white;
+    transition: box-shadow 250ms ease-in;
+    transition: transform 250ms ease-in;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+}
+
+#filtering {
+    padding-bottom: 20px;
+}
+.bt4form{
+    width: 33%;
+    margin: 10px;
+}
+.bt1, .bt2, .bt3, .bt5{
+    width: 80%;
+    margin: auto;
+}
+
+.bt4{
+    width:100%;
+}
+input:hover{
+    box-shadow: 0px 4px 4px rgb(110, 80, 41), 13px 10px 15px rgb(110, 80, 41);
+    transform: translate(-2px, -2px);
+    overflow: hidden;
+}
+
+button.bt5:hover{
+    box-shadow: 0px 4px 4px rgb(110, 80, 41), 13px 10px 15px rgb(110, 80, 41);
+    transform: translate(-2px, -2px);
+    overflow: hidden;
+}
+
+/* footer */
+
+.foot{
+    background-color: rgb(110, 80, 41);  
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px 3%;
+    top: 100px;
+    width: 100%;
+    height: 100px;
+}
+
+.foot h1, h4{
+    text-decoration: none;
+    color: white;
+}
+
+.footleft{
+    display: flex;
+    justify-content: left;
+}
+
+.footright{
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
+.footbtn1{
+    background-color: rgb(110, 80, 41);
+    border-style: none;
+    height: 5vh;
+    width: 5vw;
+    background-image: url("/static/assets/youtube.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.footbtn2{
+    background-color: rgb(110, 80, 41);
+    border-style: none;
+    height: 5vh;
+    width: 5vw;
+    background-image: url("/static/assets/github.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+/* @media screen and (max-width: 900px) {
+    button{
+        width: 500px;
+        height: 300px;
+    }
+} */
+.btn-primary{
+    color: burlywood;
+    background-color: rgb(73, 54, 27);
+    border-color: rgb(73, 54, 27);
+}
+.btn-primary:hover{
+    color: burlywood;
+    background-color: rgb(52, 38, 19);
+    border-color: rgb(52, 38, 19);
+}

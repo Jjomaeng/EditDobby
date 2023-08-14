@@ -1,0 +1,228 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+body{
+    background-color:white;
+    /* padding-top: 50px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100%;
+}
+
+.nv {
+    background-color: rgb(110, 80, 41);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 3%;
+    top: 0;
+    width: 100%;
+    height: 100px;
+    z-index: 1;
+}
+
+.navright{
+    display: flex;
+    justify-content: right;
+}
+
+.nav_item{
+    padding-left: 10px;
+    padding-right: 10px;
+    list-style: none;
+    font-size: 20px;
+}
+
+.divider{
+    list-style: none;
+    border-right: 2px solid white;
+    height: auto;
+}
+
+.nv a{
+    text-decoration: none;
+    color: white;
+}
+
+.nv a{
+    text-decoration: none;
+    color: white;
+}
+
+/* 편집목록 */
+.edited{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    top: 50px;
+    width: 100%;
+    height: 100%;
+}
+
+.edited-form{
+    width: 1400px;
+    min-width: 1000px;
+    min-height: 700px;
+    height: 800px;
+}
+.row1{
+    font-size: 40px;
+    color: rgb(160, 158, 155);
+    padding-left: 5%;
+    padding-bottom: 50px;
+}
+
+.row2{
+    display: flex;
+    /* justify-content: center; */
+    flex-wrap: nowrap;
+    margin: 0 auto;
+    width: 90%;
+    min-height: 300px;
+}
+
+.bt1, .bt2, .bt3{
+    border-style: dotted;
+    height: 40vh;
+    width: 40vw;
+    border-radius: 8px;
+    margin: 10px;
+    background: white;
+    transition: box-shadow 250ms ease-in;
+    transition: transform 250ms ease-in;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.bt1, .bt2, .bt3{
+    align-items: flex-end;
+    width: 33%;
+}
+
+.bt1{
+    background-image: url("/static/assets/camera.png");
+    background-size: 50% 50%;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.bt2{
+    background-image: url("/static/assets/bulletin-board.png");
+    background-size: 50% 50%;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.bt3{
+    background-image: url("/static/assets/user.png");
+    background-size: 50% 50%;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+strong{
+    word-break: break-all;
+}
+
+.bt1 strong{
+    font-size: 40px;
+}
+
+.bt2 strong{
+    font-size: 40px;
+}
+
+.bt3 strong{
+    font-size: 40px;
+}
+
+button.bt1:hover{
+    box-shadow: 0px 4px 4px rgb(110, 80, 41), 13px 10px 15px rgb(110, 80, 41);
+    transform: translate(-2px, -2px);
+    overflow: hidden;
+}
+button.bt2:hover{
+    box-shadow: 0px 4px 4px rgb(110, 80, 41), 13px 10px 15px rgb(110, 80, 41);
+    transform: translate(-2px, -2px);
+    overflow: hidden;
+}
+button.bt3:hover{
+    box-shadow: 0px 4px 4px rgb(110, 80, 41), 13px 10px 15px rgb(110, 80, 41);
+    transform: translate(-2px, -2px);
+    overflow: hidden;
+}
+
+
+/* 작성글 */
+.written{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    top: 50px;
+    width: 100%;
+    height: 100%;
+}
+
+.intro{
+    width: 1400px;
+    min-width: 1000px;
+    min-height: 700px;
+    height: 800px;
+}
+
+.foot{
+    background-color: rgb(110, 80, 41);  
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px 3%;
+    top: 100px;
+    width: 100%;
+    height: 100px;
+}
+
+.foot h1, h4{
+    text-decoration: none;
+    color: white;
+}
+
+.footleft{
+    display: flex;
+    justify-content: left;
+}
+
+.footright{
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
+.footbtn1{
+    background-color: rgb(110, 80, 41);
+    border-style: none;
+    height: 5vh;
+    width: 5vw;
+    background-image: url("/static/assets/youtube.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.footbtn2{
+    background-color: rgb(110, 80, 41);
+    border-style: none;
+    height: 5vh;
+    width: 5vw;
+    background-image: url("/static/assets/github.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+}

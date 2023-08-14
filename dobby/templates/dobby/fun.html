@@ -1,0 +1,558 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/fun.css' %}">
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poor+Story&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Hi+Melody&display=swap" rel="stylesheet">
+</head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit</title>
+    <link rel="stylesheet" href="{% static 'css/fun.css' %}">
+    <link rel="stylesheet" href="{% static 'css/topnavi.css' %}">
+    <style>
+        /* Google Web Fonts CDN */
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR:300,400,500,700,900&display=swap');
+
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  color: #fff;
+  font-size: 15px;
+  line-height: 1.5em;
+  font-weight: 300;
+  margin: 0;
+  background-color: #222;
+}
+a {
+  color: #222;
+  text-decoration: none;
+}
+
+.items {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.item {
+  width: 300px;
+  height: 200px;
+  display: inline-block;
+  position: relative;
+  margin: 40px;
+}
+
+.front, .back {
+  position: static;
+  transition: 0.5s;
+  top: 0;
+}
+.front {
+  background-color: #333;
+  text-align: center;
+  height: inherit;
+  width: 100%;
+  z-index: 1;
+  border-radius: 5px 5px 0 0;
+}
+.item:hover .front img {
+  animation: ani 1s linear infinite;
+}
+.front h2 {
+  margin-top: 0;
+}
+.back {
+  background-color: #fff;
+  color: #000;
+  text-align: center;
+  padding: 3px;
+  opacity: 0;
+  border-radius: 0 0 5px 5px;
+}
+.back a {
+  background-color: yellowgreen;
+  color: #fff;
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-size: 15px;
+  text-align:center;
+}
+
+.btn-modal:hover {
+    box-shadow: 0px 4px 4px rgb(110, 80, 41), 13px 10px 15px rgb(110, 80, 41);
+    transform: translate(-2px, -2px);
+    overflow: hidden;
+}
+.item:hover .front {
+  top: -50%;
+}
+.item:hover .back {
+  top: 50%;
+  opacity: 1;
+}
+
+@keyframes ani {
+  0%,100% {
+    transform: scale(0.9)
+  }
+  50% {
+    transform: scale(1.1)
+  }
+}
+
+       #modal.modal-overlay {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            left: 0;
+            top: 0;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            backdrop-filter: blur(1.5px);
+            -webkit-backdrop-filter: blur(1.5px);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+        #modal .modal-window {
+            background: burlywood;
+            box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+            backdrop-filter: blur( 13.5px );
+            -webkit-backdrop-filter: blur( 13.5px );
+            border-radius: 10px;
+            border: 1px solid rgba( 255, 255, 255, 0.18 );
+            width: 500px;
+            height: 500px;
+            position: relative;
+            /*top: -100px;*/
+            padding: 10px;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align:center;
+        }
+        #modal .title {
+            padding-left: 10px;
+            display: inline;
+            text-shadow: 1px 1px 2px gray;
+            color: white;
+            
+        }
+        #modal .title h2 {
+            display: inline;
+        }
+        #modal .close-area {
+            display: inline;
+            float: right;
+            padding-right: 10px;
+            cursor: pointer;
+            text-shadow: 1px 1px 2px gray;
+            color: white;
+        }
+        
+        .form-select{
+            margin:10px;
+            height:50px;
+            font-size: 15px;
+            background-color: rgb(110, 80, 41);
+            border-radius:7px;
+            border-color:rgb(110, 80, 41);
+            text-align: center;
+            
+        }
+      .btn-footer{
+          margin-top:30px;
+      }
+      .h3,h3{
+          margin-top:30px;
+      }
+      
+     
+    </style>
+</head>
+
+<body>
+    <div class='maindobby'>
+        <div class="nv">
+            <div class="navleft">
+                <h1>
+                    <a href="{%url 'main:main' %}"><img src="/static/assets/final_logo.png"style="width:100px; height:100px;"></a>
+                </h1>
+            </div>
+            <div class="gnb">
+                    <a href="{%url 'main:main' %}" data-link="Home"></a>
+                    <a href="{%url 'dobby:edit' %}" data-link="영상편집"></a>
+                    <a href="{%url 'board:postlist' %}" data-link="커뮤니티"></a>
+            </div>
+        </div>
+        <div class="title">
+            <h1>
+                영상편집을 성공하여 도비를 해방시켜주세요!
+            </h1>
+        </div>
+    </div>
+    <div class="content">
+
+        <div id='mask' style='position:absolute; z-index:1; display:none; background-color:black; left:0%; top:-6%' >
+            <div id='loadingImg' style='display:block;'>
+                <img src='/static/assets/snap-dobby.gif' style='position: relative; width: 100%; height:auto; display:block;'/>
+            </div>
+        </div>
+        <script>
+            function LoadingWithMask(mask, loadingImg) {
+
+                //화면의 높이와 너비를 구합니다.
+                var maskHeight = document.body.clientHeight;
+                var maskWidth  = window.document.body.clientWidth;
+        
+                //마스크의 높이와 너비를 화면 것으로 만들어 전체 화면을 채웁니다.
+                mask.style.width = maskWidth;
+                mask.style.height = maskHeight;
+                mask.style.opacity = '0.5';
+              
+                //마스크 표시
+                mask.style.display = 'block';
+        
+                //로딩중 이미지 표시
+                loadingImg.style.display = 'block';
+            }
+        
+            // 로딩창 제거
+            function closeLoadingWithMask(mask, loadingImg) {
+                loadingImg.style.display = "none";
+                mask.style.display = "none";
+            }
+            function loadingDobby() {
+                var loadingImg = document.getElementById('loadingImg');
+                var mask = document.getElementById('mask');
+                LoadingWithMask(mask, loadingImg);
+            }
+        </script>
+        <div class="items">
+            
+            <div class="item">
+                {% comment %} <button class="bt1" onclick="location.href='{%url 'main:main' %}'"> {% endcomment %}
+                <div class="front">
+                    <img src="/static/assets/dobby7.png" width="150">
+                    <h2>Shorts 영상 만들기</h2>
+                </div>
+                <div class="back">
+                    <p>
+                        <strong>도비가 여러분이 넣은 동영상을 <br> 유튜브 Shorts 영상처럼 만들어줄게요</strong>
+                    </p>
+                    <button id="btn" class="btn-modal bt1" name="shorts" value="양말을 주시겠어요?">양말을 주시겠어요?</button>
+                    {% comment %} <input id="btn" class="bt1" type="submit" name="shorts" value="양말을 주시겠어요?" class="btn btn-success" onclick="loadingDobby();"> {% endcomment %}
+                </div>
+            </div>
+            <form action="." method="POST">
+                {% csrf_token %} 
+                <div class="item">    
+                    <div class="front">
+                        <img src="/static/assets/dobby7.png" width="150">
+                        <h2>제목 & 썸네일 추천</h2>
+                    </div>
+                    <div class="back">
+                        <p>
+                            <strong>도비가 여러분이 넣은 동영상에 <br> 알맞는 제목과 썸네일을 만들어줄게요</strong>
+                        </p>
+                        <input id="btn" class="bt2" type="submit" name="title" value="양말을 주시겠어요?" class="btn btn-success" onclick="loadingDobby();">
+                    </div>
+                </div>
+            </form>
+            <div class="item">
+                <form action="." method="POST">
+                    {% csrf_token %} 
+                    <div class="front" id="filtering">
+                        <img src="/static/assets/dobby7.png" width="150">
+                        <h2>비속어 필터링</h2>
+                    </div>
+                    <div class="back">
+                        <p>
+                            <strong>도비가 여러분이 넣은 동영상에서 <br> 비속어를 삐- 소리로 바꿔줄게요</strong>
+                        </p>
+                        <input id="btn" class="bt3" type="submit" name="filter" value="양말을 주시겠어요?" class="btn btn-success" onclick="loadingDobby();"> 
+                    </div>    
+                </form>
+            </div>
+            <div class="item">
+                <div class="front">
+                    <img src="/static/assets/dobby7.png" width="150">
+                    <h2>자막 생성</h2>
+                </div>
+                <div class="back">
+                    <p>
+                        <strong>도비가 여러분이 넣은 동영상에 <br> 자막을 달아 줄게요</strong>
+                    </p>
+                    {% comment %} <button class="bt5" id="btn-modal">양말을 주시겠어요?</button> {% endcomment %}
+                    <button id="btn" class="btn-modal bt3" value="양말을 주시겠어요?">양말을 주시겠어요?</button>
+                </div>
+            </div>    
+        </div>
+        
+        <div id="modal" class="modal-overlay">
+            <div class="modal-window">
+                <form  method="POST"  action="." style="text-align: center;margin-top:40px;">
+                    {% csrf_token %}
+                    <h3>영상 압축 비율을 선택해주세요!</h3 style="margin-top:20px;"> 
+                    <select class="form-select" name="ratio" aria-label="Default select example" id="ratio" style="margin:100px;">
+                        <option selected>요약 비율 선택</option>
+                        <option value="0.1" style="font-size:12pt;">10%</option>
+                        <option value="0.2" style="font-size:12pt;">20%</option>
+                        <option value="0.3" style="font-size:12pt;">30%</option>
+                        <option value="0.4" style="font-size:12pt;">40%</option>
+                        <option value="0.5" style="font-size:12pt;">50%</option>
+                        <option value="0.6" style="font-size:12pt;">60%</option>
+                        <option value="0.7" style="font-size:12pt;">70%</option>
+                        <option value="0.8" style="font-size:12pt;">80%</option>
+                        <option value="0.9" style="font-size:12pt;">90%</option>
+                    </select>
+                    <div class="btn-footer" style="margin-top:80px">
+                    <button type="button" class="btn btn-primary closebtn" data-bs-dismiss="modal">Close</button>
+                    <button id="btn" type="submit" name="shorts" class="btn btn-primary" onclick="loadingDobby();">Save changes</button> 
+                    </div>
+                </form>
+            </div>          
+        </div>
+        <div id="modal" class="modal-overlay">
+            <div class="modal-window">
+                    <form  method="POST"  action="." style="text-align: center;margin-top:40px;">
+                        {% csrf_token %}
+                        <h3>옵션을 선택해주세요!</h3>
+
+                        <input type="hidden" value="{{request.session.file_name}}">
+                        
+                        <select class="form-select" name="font" aria-label="Default select example" id="font" onchange="handleOnChange1(this)">
+                            <option selected>font</option>
+                            <option value="font1" style="font-size:12pt; font-family: 'Hi Melody', cursive;">Hi Melody</option>
+                            <option value="font2" style="font-size:12pt; font-family: 'East Sea Dokdo', cursive;">East Sea Dokdo</option>
+                            <option value="font3" style="font-size:12pt; font-family: 'Poor Story', cursive;">Poor Story</option>
+                        </select>
+                        <div id='result1'></div>
+                        <select class="form-select" name="fontcolor" aria-label="Default select example"id="fontcolor" onchange="handleOnChange2(this)">
+                            <option selected>font-color</option>
+                            <option value="font-color1" style="color:white;">White</option>
+                            <option value="font-color2" style="color:black;">Black</option>
+                            <option value="font-color3" style="color:red;">Red</option>
+                        </select>
+                        <div id='result2'></div>
+                        <select class="form-select"  name="bgcolor" aria-label="Default select example"id="bgcolor" onchange="handleOnChange3(this)">
+                            <option selected>bg-color</option>
+                            <option value="bg-color1" style="color:black;">Black</option>
+                            <option value="bg-color2" style="color:gray;">Gray</option>
+                            <option value="bg-color3" style="color:white;">White</option>
+                        </select>
+                        <div id='result3'></div>
+                        <div class="btn-footer">
+                        <button type="button" class="btn btn-primary closebtn" data-bs-dismiss="modal">Close</button>
+                        <button id="btn" type="submit" name="create" class="btn btn-primary" onclick="loadingDobby();">Save changes</button>
+                        </div>
+                    </form>
+            </div>          
+        </div>
+        {% comment %} <div id="wrap-loading" style="z-index: 1;">
+          <h1 style="display: inline;">Loading...</h1>
+          <img src="/static/assets/snap-dobby.gif" alt="Loading..." />
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $("#btn").click(function () {
+                    $.ajax({
+                        //url: "/dobby/fun/",
+                        data: {},
+                        //data: {},
+                        success: function () {
+                        //$("body").append(data);
+                        },
+                        beforeSend: function () {
+                        $("#wrap-loading").show();
+                        },
+                        complete: function () {
+                        $("#wrap-loading").hide();
+                        },
+                    });
+                });
+            });
+        </script> {% endcomment %}
+    </div>
+    <div class="foot">
+        <div class="footleft">
+            <h1>
+                <strong>DOBBYEDIT</strong>
+            </h1>
+        </div>
+        <div class="footright">
+            <div class='copyright'>
+                <h4>
+                    <strong>Contact webmaster for more information. 010-지기지기-기용기용</strong>
+                </h4>
+            </div>
+            <button class="footbtn1" onclick="location.href='{%url 'main:main' %}'">
+            </button>
+            <button class="footbtn2" onclick="location.href='{%url 'main:main' %}'">
+            </button>
+        </div>
+    </div>     
+</body>
+<script>
+    /*const loremIpsum = document.getElementById("lorem-ipsum")
+    fetch("https://baconipsum.com/api/?type=all-meat&paras=200&format=html")
+        .then(response => response.text())
+        .then(result => loremIpsum.innerHTML = result)*/
+        
+        /*
+    const modal = document.getElementById("modal")
+    function modalOn() {
+        modal.style.display = "flex"
+    }
+    function isModalOn() {
+        return modal.style.display === "flex"
+    }
+    function modalOff() {
+        modal.style.display = "none"
+    }
+    const btnModal = document.getElementById("btn-modal")
+    btnModal.addEventListener("click", e => {
+        modalOn()
+    })
+    const closeBtn = modal.querySelector(".closebtn")
+    closeBtn.addEventListener("click", e => {
+        console.log('클릭')
+        modalOff()
+    })
+    modal.addEventListener("click", e => {
+        const evTarget = e.target
+        if(evTarget.classList.contains("modal-overlay")) {
+            modalOff()
+        }
+    })
+    window.addEventListener("keyup", e => {
+        if(isModalOn() && e.key === "Escape") {
+            modalOff()
+        }
+    }) */
+
+
+    //멀티모달
+    var modals = document.getElementsByClassName("modal-overlay");
+    var btns = document.getElementsByClassName("btn-modal");
+    var spanes = document.getElementsByClassName("closebtn");
+    var funcs = [];
+
+    function Modal(num) {
+        return function() {
+          // 해당 클래스의 내용을 클릭하면 Modal을 띄웁니다.
+          btns[num].onclick =  function() {
+              modals[num].style.display = "block";
+              console.log(num);
+          };
+       
+          // <span> 태그(X 버튼)를 클릭하면 Modal이 닫습니다.
+          spanes[num].onclick = function() {
+              modals[num].style.display = "none";
+          };
+        };
+      }
+       
+      // 원하는 Modal 수만큼 Modal 함수를 호출해서 funcs 함수에 정의합니다.
+      for(var i = 0; i < btns.length; i++) {
+        funcs[i] = Modal(i);
+      }
+       
+      // 원하는 Modal 수만큼 funcs 함수를 호출합니다.
+      for(var j = 0; j < btns.length; j++) {
+        funcs[j]();
+      }
+       
+      // Modal 영역 밖을 클릭하면 Modal을 닫습니다.
+      window.onclick = function(event) {
+        if (event.target.className == "modal-overlay") {
+            event.target.style.display = "none";
+        }
+      };
+
+    function handleOnChange1(e) { //폰트 종류
+        // 선택된 데이터의 텍스트값 가져오기
+        const text = e.options[e.selectedIndex].text;
+        console.log(e.options);
+        // 선택한 텍스트 출력
+        console.log(text);
+        console.log(1);
+
+        if (text=='Hi Melody'){
+        document.getElementById('result1').innerHTML
+          = "<span style='font-family: Hi Melody,cursive;'>Hi Melody</span>";
+        }else if(text=='East Sea Dokdo'){
+            document.getElementById('result1').innerHTML
+          ="<span style='font-family:East Sea Dokdo, cursive;'>East Sea Dokdo</span>";
+        }else if(text=='Poor Story'){
+            document.getElementById('result1').innerHTML
+          ="<span style='font-family:Poor Story, cursive;'>Poor Story</span>";
+        }
+      }
+      function handleOnChange2(e) { //폰트색
+        // 선택된 데이터의 텍스트값 가져오기
+        const text = e.options[e.selectedIndex].text;
+        console.log(e.options);
+        // 선택한 텍스트 출력
+        console.log(2);
+
+        if (text=='White'){
+        document.getElementById('result2').innerHTML
+          = "<span style='color:white'> White</span>";
+        }else if(text=='Black'){
+            document.getElementById('result2').innerHTML
+          ="<span style='color:black'>Black</span>";
+        }else if(text=='Red'){
+            document.getElementById('result2').innerHTML
+          ="<span style='color:red'>Red</span>";
+        }
+      }
+      function handleOnChange3(e) { //배경색
+        // 선택된 데이터의 텍스트값 가져오기
+        const text = e.options[e.selectedIndex].text;
+        // 선택한 텍스트 출력
+        if (text=='Black'){
+        document.getElementById('result3').innerHTML
+          = "<span style='color:black'> Black</span>";
+        }else if(text=='Gray'){
+            document.getElementById('result3').innerHTML
+          ="<span style='color:gray'> Gray</span>";
+        }else if(text=='White'){
+            document.getElementById('result3').innerHTML
+          ="<span style='color:white'>White</span>";
+        }
+      }
+
+     /* $(document).ready(function() {
+        $( "select[name=fontselect]" ).val( "{{ font_text }}" );
+        $('select[name=fontselect]').change(function () {
+        console.log($('select[name=fontselect]').val());
+        font = $('select[name=fontselect]').val();
+        $('.form').submit();
+        });
+    });
+    function getItem(){
+        
+        var test=$("select[name=fontselect]").val();
+        console.log(test);
+      }*/
+
+
+</script>
+</html>

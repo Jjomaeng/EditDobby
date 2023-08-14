@@ -1,0 +1,242 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/main.css' %}">
+<link rel="stylesheet" href="{% static 'css/topnavi.css' %}">
+ 
+ 
+<body>
+   
+<style>
+input{
+    width:700px;
+    box-sizing: border-box;
+}
+input[type="text"]{
+    border: solid 3px rgb(110, 80, 41);
+    border-radius: 8px;
+}
+input[type="file"]{
+    margin-top:10px;
+    margin-bottom:10px;
+    font-size: 20px;
+}
+input[type="submit"]{
+    background-color: rgb(110, 80, 41);
+    border-color:rgb(110, 80, 41);
+ 
+}
+textarea{
+    width:700px;
+    border: solid 3px rgb(110, 80, 41);
+    border-radius: 8px;
+}
+ 
+.content{
+    font-size: 30px;
+    padding-left: 3%;
+    padding-bottom: 50px;
+   
+}
+ 
+.container{
+    font-size: 40px;
+    color: rgb(160, 158, 155);
+    text-align:center;
+   
+}
+.row{
+    float:right;
+    margin:10px 10px 30px 10px;
+}
+.form-select{
+    height:50px;
+    font-size: 20px;
+}
+.form-control{
+    height:50px;
+}
+.col-auto{
+    height:50px;
+}
+button{
+    height:50px;
+    width:100px;
+    margin:0px;
+}
+.foot{
+    background-color: rgb(110, 80, 41);
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px 3%;
+    top: 100px;
+    width: 100%;
+    height: 100px;
+}
+ 
+
+.nv {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5%;
+    top: 0;
+    width: 100%;
+    height: 50px;
+    z-index: 1;
+}
+
+.navleft{
+    display: flex;
+    justify-content: left;
+}
+
+.navright{
+    display: flex;
+    justify-content: right;
+}
+
+
+.foot h1, h4{
+    text-decoration: none;
+    color: white;
+}
+ 
+.footleft{
+    display: flex;
+    justify-content: left;
+}
+ 
+.footright{
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+ 
+.footbtn1{
+    background-color: rgb(110, 80, 41);
+    border-style: none;
+    height: 5vh;
+    width: 5vw;
+    background-image: url("/static/assets/youtube.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+ 
+.footbtn2{
+    background-color: rgb(110, 80, 41);
+    border-style: none;
+    height: 5vh;
+    width: 5vw;
+    background-image: url("/static/assets/github.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+p{
+    margin:25px 300px 0px 0px;
+    font-size:20px;
+}
+body{
+   
+    background-color: burlywood;
+}
+
+.maindobby{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 700px;
+    background-image: url("/static/assets/write.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+
+</style>
+ 
+ 
+<div class='maindobby'>
+    <div class="nv">
+        <div class="navleft">
+            <h1>
+                <a href="{%url 'main:main' %}"><img src="/static/assets/final_logo.png"style="width:100px; height:100px;"></a>
+            </h1>
+        </div>
+        <div class="gnb">
+                <a href="{%url 'main:main' %}" data-link="Home"></a>
+                <a href="{%url 'dobby:edit' %}" data-link="영상편집"></a>
+                <a href="{%url 'board:postlist' %}" data-link="커뮤니티"></a>
+        </div>
+    </div>
+</div>
+ 
+{% comment %} <body>
+    <h1>post</h1>
+    <hr>
+    
+    
+    {{ post.post_detail }} <br>
+    {{ comment.comment_detail }} <br>
+    {{ postfile.postfile_name }} <br>
+
+
+    댓글입력창 + 수정삭제(post메서드)
+
+</body> {% endcomment %}
+ 
+ 
+ 
+<div class="container my-3" style="color:black;">
+    <div>
+        <strong>게시글쓰기</strong>
+    </div>
+</div>
+<div class="content">
+    <form method="POST">
+        {% csrf_token %}
+        Title<br>
+        {% if post.post_no %}
+        <input type="text" name="postname" value="{{post.post_title}}"><br>
+        {% else %}
+        <input type="text" name="postname"><br>
+        {% endif%}
+        
+        Content<br>
+        {% if post.post_no %}
+        <textarea rows="50" cols="50" name="contents">{{post.post_detail}}</textarea><br>
+        {% else %}
+        <textarea rows="50" cols="50" name="contents"></textarea><br>
+        {% endif %}
+
+        <br>
+     
+        <input type="submit" class="btn btn-secondary" value="작성!">
+    </form>
+ 
+ 
+</div>
+<div class="foot">
+    <div class="footleft">
+        <h1>
+            <strong>DOBBYEDIT</strong>
+        </h1>
+    </div>
+    <div class="footright">
+        <div class='copyright'>
+            <h4>
+                <strong>Contact webmaster for more information. 010-지기지기-기용기용</strong>
+            </h4>
+        </div>
+        <button class="footbtn1" onclick="location.href='{%url 'main:main' %}'">
+        </button>
+        <button class="footbtn2" onclick="location.href='{%url 'main:main' %}'">
+        </button>
+    </div>
+</div>
+ 
+</body>

@@ -1,0 +1,120 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mypage</title>
+    <link rel="stylesheet" href="{% static 'css/my.css' %}">
+</head>
+
+<body>
+    <div class="nv">
+        <div class="navleft">
+            <h1>
+                <a href="{%url 'main:main' %}">DOBBYEDIT</a>
+            </h1>
+        </div>
+        <div class="navright">
+            <li class=nav_item>    
+                <a href="{%url 'main:main' %}">영상편집</a>
+            </li>
+            <li class="divider"></li>
+            <li class=nav_item>    
+                <a href="{%url 'main:main' %}">게시판</a>
+            </li>
+            <li class="divider"></li>
+            <li class=nav_item>    
+                <a href="{%url 'main:my' %}">MY</a>
+            </li>
+        </div>
+    </div>    
+    <div class="written">
+        <div class="intro">
+            <div class="row1">
+                <div>
+                    <strong>{{ request.session.s_id }}님 반갑습니다.</strong>
+                </div>
+            </div>
+            <div class="row2">
+                <div class="container">
+                    <img src='/static/assets/harryicon.png' style="width: 300px; min-width: 140px;">
+                </div>
+                <div>
+                    {{ request.session.s_id }} 님 반갑습니다.
+                </div>    
+            </div>
+        </div>
+    </div>
+    <div class="edited">
+        <div class="edited-form">
+            <div class="row1">
+                <div>
+                    <strong>편집한 목록</strong>
+                </div>
+                <div>
+                    <table>
+                        <thead>
+                        <tr>
+                            <td>글 번호</td>
+                            <td>아이디</td>
+                            <td>글 제목</td>
+                            <td>작성 날짜</td>
+                            <td>닉네임</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {%for file in files%}
+                        <tr>
+                            {%if file.member_id.member_id == request.session.s_id%}
+                            <td>{{file.file_no}}</td>
+                            <td>{{file.member_id.member_id}}</td>
+                            <td>{{file.file_name}}</td>
+                            <td>{{file.file_date}}</td>
+                            <td>{{file.file_root}}</td>
+                            {%endif%}
+                        </tr>
+                        {%endfor%}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row2">
+            </div>
+        </div>
+    </div>
+    <div class="written">
+        <div class="intro">
+            <div class="row1">
+                <div>
+                    <strong>작성글</strong>
+                </div>
+            </div>
+            <div class="row2">
+                <div>
+                </div>    
+            </div>
+        </div>
+    </div>
+    <div class="foot">
+        <div class="footleft">
+            <h1>
+                <strong>DOBBYEDIT</strong>
+            </h1>
+        </div>
+        <div class="footright">
+            <div class='copyright'>
+                <h4>
+                    <strong>Contact webmaster for more information. 010-지기지기-기용기용</strong>
+                </h4>
+            </div>
+            <button class="footbtn1" onclick="location.href='{%url 'main:main' %}'">
+            </button>
+            <button class="footbtn2" onclick="location.href='{%url 'main:main' %}'">
+            </button>
+        </div>
+    </div>  
+</body>
+</html>
